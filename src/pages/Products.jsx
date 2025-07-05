@@ -12,7 +12,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-export default function ProductList({filteredProducts}) {
+export default function Products() {
   // const { products } = data;
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
@@ -32,14 +32,13 @@ export default function ProductList({filteredProducts}) {
 
   const fetchProducts = async () => {
     try {
-      // const { data } = await axiosInstance.get("/product");
-      // setProducts(data.data);
-      // setAllProducts(data.data);
-      // console.log("Products fetched successfully", data.data);
-      // if (data.error) {
-      //   console.error("Error fetching products:", data.error);
-      // }
-      setProducts(filteredProducts);
+      const { data } = await axiosInstance.get("/product");
+      setProducts(data.data);
+      setAllProducts(data.data);
+      console.log("Products fetched successfully", data.data);
+      if (data.error) {
+        console.error("Error fetching products:", data.error);
+      }
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -89,14 +88,14 @@ export default function ProductList({filteredProducts}) {
   //   }
   // };
   // Filter logic
-  // const filteredProducts = allProducts.filter((product) => {
-  //   const matchesName = product.product_name
-  //     .toLowerCase()
-  //     .includes(searchTerm.toLowerCase());
-  //   const matchesCategory =
-  //     selectedCategory === "all" || product.category_id === selectedCategory;
-  //   return matchesName && matchesCategory;
-  // });
+  const filteredProducts = allProducts.filter((product) => {
+    const matchesName = product.product_name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || product.category_id === selectedCategory;
+    return matchesName && matchesCategory;
+  });
   return (
     <div className="products-list">
       {/* Filter section */}
