@@ -50,5 +50,8 @@
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.17.2"
   }
 }
