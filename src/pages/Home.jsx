@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/home.css";
+import "../css/Home.css";
 import ProductList from "@/pages/ProductList";
 import CategoriesList from "@/common/Categories/CategoriesList";
 import Banner from "@/common/Banner/Banner";
@@ -11,8 +11,6 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-
-
 
   // const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
 
@@ -59,12 +57,12 @@ export default function Home() {
     fetchProductCount();
   }, []);
 
-  useEffect(() => {
-    console.log("All products:", allProducts);
-    console.log("Selected category:", selectedCategory);
+  useEffect(
+    () => {
+      console.log("All products:", allProducts);
+      console.log("Selected category:", selectedCategory);
 
-    const filtered = allProducts
-      .filter((product) => {
+      const filtered = allProducts.filter((product) => {
         const matchesName = product.product_name
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
@@ -76,7 +74,7 @@ export default function Home() {
         //   product.price >= priceRange.min && product.price <= priceRange.max;
         // console.log("Matches price:", matchesPrice); // Kiểm tra điều kiện giá
 
-        return matchesName && matchesCategory ;
+        return matchesName && matchesCategory;
       });
       // .sort((a, b) => {
       //   if (sortOrder === "asc") {
@@ -86,12 +84,13 @@ export default function Home() {
       //   }
       // });
 
-    console.log("Filtered products:", filtered);
+      console.log("Filtered products:", filtered);
 
-    setProducts(filtered);
-  },
-  // CẬP NHẬT KHI CÓ SỰ THAY ĐỔI CÁC BIẾN -> kích hoạt useEffect
-  [allProducts, searchTerm, selectedCategory]); //]); 
+      setProducts(filtered);
+    },
+    // CẬP NHẬT KHI CÓ SỰ THAY ĐỔI CÁC BIẾN -> kích hoạt useEffect
+    [allProducts, searchTerm, selectedCategory]
+  ); //]);
 
   // Xử lý khi chọn danh mục
   const handleCategorySelect = (categoryId) => {
@@ -107,8 +106,6 @@ export default function Home() {
     setSelectedCategory("all");
     console.log("Showing all products", allProducts);
   };
-
-  
 
   const formatCurrency = (value) => {
     if (value === Infinity) return ""; // Nếu là Infinity, trả về chuỗi rỗng
@@ -165,7 +162,7 @@ export default function Home() {
           <p>Số lượng sản phẩm trong danh mục: {categoryProductCount}</p>
         )}
       </div> */}
-      
+
       {/* Lọc theo giá
       <div className="filter-panel">
         <div className="filter-item">
@@ -210,8 +207,6 @@ export default function Home() {
           </select>
         </div>
       </div> */}
-
-     
 
       <ProductList filteredProducts={products} />
     </div>
