@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/productList.css";
+import "../css/ProductList.css";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import axiosInstance from "@/lib/axios";
@@ -70,7 +70,7 @@ export default function Products() {
       minimumFractionDigits: 0, // Không hiển thị số lẻ sau dấu phẩy (vd: 1.000.000₫ thay vì 1.000.000,00₫)
     }).format(amount);
   };
-  
+
   // const [products, setProducts] = useState([]);
   // useEffect(() => {
   //   fetchProducts();
@@ -91,8 +91,8 @@ export default function Products() {
   // Filter logic
   const filteredProducts = allProducts.filter((product) => {
     const matchesName = product.product_name
-      .toLowerCase() 
-      .includes(searchTerm.toLowerCase());//chuyen chữ thường và so sánh
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase()); //chuyen chữ thường và so sánh
     const matchesCategory =
       selectedCategory === "all" || product.category_id === selectedCategory;
     return matchesName && matchesCategory;
